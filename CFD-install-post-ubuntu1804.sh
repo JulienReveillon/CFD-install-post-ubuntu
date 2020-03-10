@@ -18,17 +18,9 @@ function pip_install {
   fi
 }
 
-
-sudo apt-get update --fix-missing
-
-# Install downloaded source code in ~/srclib
-# cd
-if [ ! -d srclib ]; then mkdir srclib; fi
-
-
-##### Misc
-# already installed 
-# apt_install wget
+##### upgrade system
+sudo apt-get update
+sudo apt upgrade
 
 
 ##### Text Editors
@@ -51,38 +43,6 @@ apt_install mercurial
 apt_install cvs
 apt_install git
 apt_install gitk
-
-
-##### Python
-
-# Matplotlib requires libfreetype-dev libpng-dev
-# (otherwise pip install matplotlib does not work)
-#apt_install libfreetype6-dev
-#apt_install libpng-dev
-#apt_install idle
-
-# Python3
-apt_install python3-pip
-apt_install python3-opengl
-# upgrade pip3
-sudo -H pip3 install --upgrade pip
-
-#pip  install
-pip_install setuptools
-pip_install numpy
-pip_install sympy
-pip_install numexpr
-pip_install matplotlib
-pip_install redis
-pip_install bokeh
-pip_install ipython
-pip_install panda
-pip_install scipy
-pip_install pytest
-pip_install flake8
-pip_install numpydoc
-pip_install pygame
-pip_install xkcd
 
 #### Compilers and compilation and hdf5
 apt_install gcc
@@ -110,27 +70,66 @@ apt_install libhdf5-dev
 # OF compilation necessary
 # most of them are already installed
 # https://openfoamwiki.net/index.php/Installation/Linux/OpenFOAM-7/Ubuntu/18.04
-apt_install git-core 
 apt_install build-essential 
-apt_install cmake 
-apt_install libfl-dev 
+apt_install flex
 apt_install bison 
+apt_install cmake 
 apt_install zlib1g-dev 
-apt_install qttools5-dev 
-apt_install qtbase5-dev 
-apt_install libqt5x11extras5-dev 
+apt_install libboost-system-dev
+apt_install libboost-thread-dev 
+apt_install libopenmpi-dev 
+apt_install openmpi-bin
+apt_install gnuplot
 apt_install libreadline-dev 
 apt_install libncurses-dev 
-apt_install libxt-dev 
-apt_install libopenmpi-dev 
-apt_install openmpi-bin 
-apt_install libboost-system-dev 
-apt_install libboost-thread-dev 
+apt_install libxt-dev
+apt_install qt5-default 
+apt_install libqt5x11extras5-dev 
+apt_install libqt5help5 
+apt_install qtdeclarative5-dev 
+apt_install qttools5-dev
+apt_install qtbase5-dev
+apt_install libqtwebkit-dev
+apt_install freeglut3-dev
+apt_install libqt5opengl5-dev
+apt_install texinfo
+apt_install libscotch-dev
+apt_install libcgal-dev 
+apt_install git-core 
+apt_install build-essential 
+apt_install libfl-dev 
 apt_install libgmp-dev
 apt_install libmpfr-dev
-apt_installlibcgal-dev 
 apt_install curl
+apt_install python 
+apt_install python-dev
 
+
+
+##### Python
+
+# Python3
+apt_install python3-pip
+apt_install python3-opengl
+# upgrade pip3
+sudo -H pip3 install --upgrade pip
+
+#pip  install
+pip_install setuptools
+pip_install numpy
+pip_install sympy
+pip_install numexpr
+pip_install matplotlib
+pip_install redis
+pip_install bokeh
+pip_install ipython
+pip_install panda
+pip_install scipy
+pip_install pytest
+pip_install flake8
+pip_install numpydoc
+pip_install pygame
+pip_install xkcd
 
 
 #
@@ -190,12 +189,9 @@ apt_install totem
 apt_install ffmpeg
 apt_install libav-tools
 
-
 # Support for French
 apt_install language-pack-fr-base
 apt_install language-pack-fr
-
-
 
 # OPENFOAM
 
