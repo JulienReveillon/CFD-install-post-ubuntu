@@ -56,8 +56,8 @@ apt_install autotools-dev
 apt_install hdf5-helpers
 apt_install hdf5-tools
 apt_install hdfview
-apt_install libhdf5-10
-apt_install libhdf5-cpp-11
+apt_install libhdf5-100
+apt_install libhdf5-cpp-100
 apt_install libhdf5-dev
 
 
@@ -179,15 +179,9 @@ apt_install imagemagick
 apt_install vlc
 apt_install netpbm
 apt_install mjpegtools
-apt_install pdftk
 apt_install giftrans
-apt_install gv
-apt_install evince
-apt_install smpeg-plaympeg
 apt_install mplayer
-apt_install totem
 apt_install ffmpeg
-apt_install libav-tools
 
 # Support for French
 apt_install language-pack-fr-base
@@ -209,7 +203,7 @@ tar -xzf OpenFOAM-v1912.tgz
 tar -xzf ThirdParty-v1912.tgz
 source OpenFOAM-v1912/etc/bashrc
 cd $WM_THIRD_PARTY_DIR
-./makeParaview
+./makeParaView
 
 
 
