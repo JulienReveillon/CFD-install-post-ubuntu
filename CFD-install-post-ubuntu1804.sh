@@ -20,7 +20,7 @@ function pip_install {
 
 ##### upgrade system
 sudo apt-get update
-sudo apt upgrade
+sudo apt upgrade -y
 
 
 ##### Text Editors
