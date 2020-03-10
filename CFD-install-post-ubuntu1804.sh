@@ -169,10 +169,6 @@ apt_install liblualib50-dev
 
 # Drawing programs
 apt_install inkscape
-apt_install xfig
-apt_install xfig-doc
-apt_install transfig
-apt_install fig2ps
 
 # Image manipulation
 apt_install imagemagick
