@@ -27,7 +27,8 @@ if [ ! -d srclib ]; then mkdir srclib; fi
 
 
 ##### Misc
-apt_install wget
+# already installed 
+# apt_install wget
 
 
 ##### Text Editors
@@ -51,60 +52,8 @@ apt_install cvs
 apt_install git
 apt_install gitk
 
-# Compilers and compilation
-apt_install gcc
-apt_install g++
-apt_install gawk
-apt_install f2c
-apt_install gfortran
-apt_install autoconf
-apt_install automake
-apt_install autotools-dev
-apt_install cmake
 
-
-
-# Numerical libraries
-#apt_install libatlas-base-dev
-#apt_install libsuitesparse-dev
-
-# JR Software development and OF compilation necessary
-# most of them are already installed
-# apt_install build-essential
-# apt_install binutils-dev
-# apt_install cmake
-# apt_install flex
-# apt_install bison
-# apt_install zlib1g-dev
-# apt_install qt4-dev-tools
-# apt_install libqt4-dev
-# apt_install libqtwebkit-dev
-# apt_install libreadline-dev
-# apt_install libncurses-dev
-# apt_install libxt-dev
-# apt_install libopenmpi-dev
-# apt_install openmpi-bin
-# apt_install libboost-system-dev
-# apt_install libboost-thread-dev
-# apt_install libgmp-dev
-# apt_install libmpfr-dev
-# apt_install libcgal-dev
-# apt_install libglu1-mesa-dev
-# apt_install libqt4-opengl-dev
-# apt_install hdf5-helpers
-# apt_install hdf5-tools
-# apt_install hdfview
-# apt_install libhdf5-10
-# apt_install libhdf5-cpp-11
-# apt_install libhdf5-dev
-
-
-
-
-
-#
-#  JR Python
-#
+##### Python
 
 # Matplotlib requires libfreetype-dev libpng-dev
 # (otherwise pip install matplotlib does not work)
@@ -135,6 +84,55 @@ pip_install numpydoc
 pip_install pygame
 pip_install xkcd
 
+#### Compilers and compilation and hdf5
+apt_install gcc
+apt_install g++
+apt_install gawk
+apt_install f2c
+apt_install gfortran
+apt_install autoconf
+apt_install automake
+apt_install autotools-dev
+apt_install hdf5-helpers
+apt_install hdf5-tools
+apt_install hdfview
+apt_install libhdf5-10
+apt_install libhdf5-cpp-11
+apt_install libhdf5-dev
+
+
+##### OF libraries
+
+# Numerical libraries
+#apt_install libatlas-base-dev
+#apt_install libsuitesparse-dev
+
+# OF compilation necessary
+# most of them are already installed
+# https://openfoamwiki.net/index.php/Installation/Linux/OpenFOAM-7/Ubuntu/18.04
+apt_install git-core 
+apt_install build-essential 
+apt_install cmake 
+apt_install libfl-dev 
+apt_install bison 
+apt_install zlib1g-dev 
+apt_install qttools5-dev 
+apt_install qtbase5-dev 
+apt_install libqt5x11extras5-dev 
+apt_install libreadline-dev 
+apt_install libncurses-dev 
+apt_install libxt-dev 
+apt_install libopenmpi-dev 
+apt_install openmpi-bin 
+apt_install libboost-system-dev 
+apt_install libboost-thread-dev 
+apt_install libgmp-dev
+apt_install libmpfr-dev
+apt_installlibcgal-dev 
+apt_install curl
+
+
+
 #
 # JR plot, CAD, mesh softwares
 #
@@ -154,21 +152,21 @@ apt_install liblualib50-dev
 #apt_install grace
 #apt_install dx
 #apt_install dx-doc
-apt_install tcl-vtk
-apt_install python-vtk
-apt_install libvtk5-dev
+#apt_install tcl-vtk
+#apt_install python-vtk
+#apt_install libvtk5-dev
 
 # JR pseudo-Matlab
-apt_install octave
-apt_install octave-splines
-apt_install octave-symbolic
-apt_install octave-specfun
-apt_install octave-optim
-apt_install octave-odepkg
+#apt_install octave
+#apt_install octave-splines
+#apt_install octave-symbolic
+#apt_install octave-specfun
+#apt_install octave-optim
+#apt_install octave-odepkg
 #octave-audio
 
 # Databases
-apt_install libsqlite3-dev
+#apt_install libsqlite3-dev
 
 # Drawing programs
 apt_install inkscape
@@ -245,11 +243,4 @@ cd $WM_THIRD_PARTY_DIR
 # sudo apt-get autoclean
 # sudo apt-get -y autoremove
 
-
-
-
-
-
-
-
-echo "Everything is successfully installed!"
+echo "Done !"
