@@ -191,6 +191,18 @@ sudo sh -c "wget -O - http://dl.openfoam.org/gpg.key | apt-key add -"
 sudo add-apt-repository http://dl.openfoam.org/ubuntu
 sudo apt-get update
 sudo apt-get -y install openfoam7
+echo "alias of70='. /opt/openfoam7/etc/bashrc'" >> ~/.bashrc
+. /opt/openfoam7/etc/bashrc
+mkdir -p $FOAM_USER
+
+#olaflow
+cd ~
+git clone git://github.com/phicau/olaFlow.git
+cd olaFlow
+./allMake
+cd ~
+
+
 
 # THE END
 sudo apt-get clean
