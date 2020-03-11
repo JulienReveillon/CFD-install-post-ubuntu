@@ -1,4 +1,8 @@
-#
+##!/bin/bash
+
+# complete install
+
+
 # Install OpenFOAM - ESI version
 if [ ! -d $HOME/OpenFOAM ]; then mkdir $HOME/OpenFOAM; fi
 cd $HOME/OpenFOAM
