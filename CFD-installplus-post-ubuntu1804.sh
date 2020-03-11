@@ -14,6 +14,7 @@ source OpenFOAM-v1912/etc/bashrc
 cd $WM_THIRD_PARTY_DIR
 # warning see https://develop.openfoam.com/Development/ThirdParty-common/issues/48
 sudo dpkg-reconfigure dash
+sed -i 's/!\/bin\/sh/!\/bin\/bash/' makeParaView
 # ebd warning
 #./makeParaView
 
