@@ -199,7 +199,10 @@ tar -xzf OpenFOAM-v1912.tgz
 tar -xzf ThirdParty-v1912.tgz
 source OpenFOAM-v1912/etc/bashrc
 cd $WM_THIRD_PARTY_DIR
-./makeParaView
+# warning see https://develop.openfoam.com/Development/ThirdParty-common/issues/48
+sudo dpkg-reconfigure dash
+# ebd warning
+#./makeParaView
 
 
 
