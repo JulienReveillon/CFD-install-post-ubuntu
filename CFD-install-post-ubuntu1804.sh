@@ -193,7 +193,7 @@ sudo apt-get update
 sudo apt-get -y install openfoam7
 echo "alias of70='. /opt/openfoam7/etc/bashrc'" >> ~/.bashrc
 . /opt/openfoam7/etc/bashrc
-mkdir -p $FOAM_USER
+mkdir -p "$FOAM_USER"
 
 #olaflow
 cd ~
