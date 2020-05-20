@@ -130,6 +130,7 @@ pip_install flake8
 pip_install numpydoc
 pip_install pygame
 pip_install xkcd
+pip_install seaborn
 
 
 #
