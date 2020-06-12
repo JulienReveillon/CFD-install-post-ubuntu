@@ -60,6 +60,8 @@ apt_install libhdf5-100
 apt_install libhdf5-cpp-100
 apt_install libhdf5-dev
 
+# for otehr install
+apt_install aptitude
 
 ##### OF libraries
 
@@ -103,7 +105,8 @@ apt_install libmpfr-dev
 apt_install curl
 apt_install python 
 apt_install python-dev
-
+apt_install aptitude
+apr_insatll software-properties-common
 
 
 ##### Python
@@ -131,6 +134,15 @@ pip_install numpydoc
 pip_install pygame
 pip_install xkcd
 pip_install seaborn
+
+# pycharm
+sudo snap install pycharm-community --classic
+
+### cantera
+sudo aptitude install python-software-properties
+sudo apt-add-repository ppa:speth/cantera
+sudo aptitude update
+sudo aptitude install cantera-python cantera-python3 cantera-dev
 
 
 #
