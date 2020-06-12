@@ -33,7 +33,7 @@ apt_install vim
 apt_install ispell
 # latex editor
 apt_install texstudio
-# edition
+# code edition
 apt_install meld
 
 
