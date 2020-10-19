@@ -29,7 +29,7 @@ sudo apt upgrade -y
 
 
 ##### Text Editors
-if [$mode = "full" ]
+if [ $mode = "full" ]
 then
     # atom editor
     sudo add-apt-repository ppa:webupd8team/atom -y
@@ -47,7 +47,7 @@ fi
 
 ##### Version control
 apt_install git
-if [$mode = "full" ]
+if [ $mode = "full" ]
 then
     apt_install subversion
     apt_install mercurial
@@ -169,10 +169,9 @@ apt_install liblualib50-dev
 
 apt_install meshlab
 apt_install freecad
-if [$mode = "full" ]
+if [ $mode = "full" ]
 then
     apt_install blender
-    apt_install freecad
     apt_install mayavi2
     apt_install meshlab
 
@@ -199,11 +198,10 @@ fi
 # Databases
 #apt_install libsqlite3-dev
 apt_install vlc
-if [$mode = "full" ]
+if [ $mode = "full" ]
 then
     # Drawing programs
     apt_install inkscape
-
     # Image manipulation
     apt_install imagemagick
     apt_install netpbm
@@ -212,9 +210,9 @@ then
     apt_install mplayer
     apt_install ffmpeg
 
-# Support for French
-apt_install language-pack-fr-base
-apt_install language-pack-fr
+    # Support for French
+    apt_install language-pack-fr-base
+    apt_install language-pack-fr
 fi
 
 # OPENFOAM
