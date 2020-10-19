@@ -1,5 +1,10 @@
 #!/bin/bash
 
+### by default : light install (for virtual boxes)
+mode="light"
+### for completes install : mode full
+#mode="full"
+
 set -x  # make sure each command is printed in the terminal
 
 function apt_install {
@@ -24,25 +29,32 @@ sudo apt upgrade -y
 
 
 ##### Text Editors
-# atom editor
-sudo add-apt-repository ppa:webupd8team/atom -y
-sudo apt-get update
-apt_install atom
-# vim
-apt_install vim
-apt_install ispell
-# latex editor
-apt_install texstudio
-# code edition
-apt_install meld
+if [$mode = "full" ]
+then
+    # atom editor
+    sudo add-apt-repository ppa:webupd8team/atom -y
+    sudo apt-get update
+    apt_install atom
+    # vim
+    apt_install vim
+    apt_install ispell
+    # latex editor
+    apt_install texstudio
+    # code edition
+    apt_install meld
+fi
 
 
 ##### Version control
-apt_install subversion
-apt_install mercurial
-apt_install cvs
 apt_install git
-apt_install gitk
+if [$mode = "full" ]
+then
+    apt_install subversion
+    apt_install mercurial
+    apt_install cvs
+    apt_install git
+    apt_install gitk
+fi
 
 #### Compilers and compilation and hdf5
 apt_install gcc
@@ -60,7 +72,7 @@ apt_install libhdf5-100
 apt_install libhdf5-cpp-100
 apt_install libhdf5-dev
 
-# for otehr install
+# for other install
 apt_install aptitude
 
 ##### OF libraries
@@ -148,16 +160,23 @@ sudo aptitude install cantera-python cantera-python3 cantera-dev
 #
 # JR plot, CAD, mesh softwares
 #
-apt_install blender
-apt_install freecad
-apt_install mayavi2
-apt_install meshlab
 # Gnuplot (use qt backend)
 apt_install gnuplot
 apt_install gnuplot-doc
 apt_install gnuplot-qt
 apt_install python-gnuplot
 apt_install liblualib50-dev
+
+apt_install meshlab
+apt_install freecad
+if [$mode = "full" ]
+then
+    apt_install blender
+    apt_install freecad
+    apt_install mayavi2
+    apt_install meshlab
+
+fi
 
 
 # Plotting and visualization programs
@@ -179,34 +198,36 @@ apt_install liblualib50-dev
 
 # Databases
 #apt_install libsqlite3-dev
-
-# Drawing programs
-apt_install inkscape
-
-# Image manipulation
-apt_install imagemagick
 apt_install vlc
-apt_install netpbm
-apt_install mjpegtools
-apt_install giftrans
-apt_install mplayer
-apt_install ffmpeg
+if [$mode = "full" ]
+then
+    # Drawing programs
+    apt_install inkscape
+
+    # Image manipulation
+    apt_install imagemagick
+    apt_install netpbm
+    apt_install mjpegtools
+    apt_install giftrans
+    apt_install mplayer
+    apt_install ffmpeg
 
 # Support for French
 apt_install language-pack-fr-base
 apt_install language-pack-fr
+fi
 
 # OPENFOAM
 
 # OpenFoam fondation package
 echo "OpenFoam fondation package !"
-sudo sh -c "wget -O - http://dl.openfoam.org/gpg.key | apt-key add -"
+sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"
 sudo add-apt-repository http://dl.openfoam.org/ubuntu
 sudo apt-get update
-sudo apt-get -y install openfoam7
-echo "alias of70='. /opt/openfoam7/etc/bashrc'" >> ~/.bashrc
-. /opt/openfoam7/etc/bashrc
-mkdir -p "$FOAM_USER"
+sudo apt-get -y install openfoam8
+echo "alias of80='. /opt/openfoam8/etc/bashrc'" >> ~/.bashrc
+. /opt/openfoam8/etc/bashrc
+mkdir -p "$FOAM_RUN"
 
 #olaflow
 cd ~
