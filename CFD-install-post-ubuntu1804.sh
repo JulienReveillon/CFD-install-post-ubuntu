@@ -84,42 +84,44 @@ apt_install aptitude
 # OF compilation necessary
 # most of them are already installed
 # https://openfoamwiki.net/index.php/Installation/Linux/OpenFOAM-7/Ubuntu/18.04
-apt_install build-essential 
-apt_install flex
-apt_install bison 
-apt_install cmake 
-apt_install zlib1g-dev 
-apt_install libboost-system-dev
-apt_install libboost-thread-dev 
-apt_install libopenmpi-dev 
-apt_install openmpi-bin
-apt_install gnuplot
-apt_install libreadline-dev 
-apt_install libncurses-dev 
-apt_install libxt-dev
-apt_install qt5-default 
-apt_install libqt5x11extras5-dev 
-apt_install libqt5help5 
-apt_install qtdeclarative5-dev 
-apt_install qttools5-dev
-apt_install qtbase5-dev
-apt_install libqtwebkit-dev
-apt_install freeglut3-dev
-apt_install libqt5opengl5-dev
-apt_install texinfo
-apt_install libscotch-dev
-apt_install libcgal-dev 
-apt_install git-core 
-apt_install build-essential 
-apt_install libfl-dev 
-apt_install libgmp-dev
-apt_install libmpfr-dev
-apt_install curl
-apt_install python 
-apt_install python-dev
-apt_install aptitude
-apr_insatll software-properties-common
-
+if [ $mode = "full" ]
+then
+    apt_install build-essential 
+    apt_install flex
+    apt_install bison 
+    apt_install cmake 
+    apt_install zlib1g-dev 
+    apt_install libboost-system-dev
+    apt_install libboost-thread-dev 
+    apt_install libopenmpi-dev 
+    apt_install openmpi-bin
+    apt_install gnuplot
+    apt_install libreadline-dev 
+    apt_install libncurses-dev 
+    apt_install libxt-dev
+    apt_install qt5-default 
+    apt_install libqt5x11extras5-dev 
+    apt_install libqt5help5 
+    apt_install qtdeclarative5-dev 
+    apt_install qttools5-dev
+    apt_install qtbase5-dev
+    apt_install libqtwebkit-dev
+    apt_install freeglut3-dev
+    apt_install libqt5opengl5-dev
+    apt_install texinfo
+    apt_install libscotch-dev
+    apt_install libcgal-dev 
+    apt_install git-core 
+    apt_install build-essential 
+    apt_install libfl-dev 
+    apt_install libgmp-dev
+    apt_install libmpfr-dev
+    apt_install curl
+    apt_install python 
+    apt_install python-dev
+    apt_install aptitude
+    apr_insatll software-properties-common
+fi
 
 ##### Python
 
@@ -130,22 +132,26 @@ apt_install python3-opengl
 sudo -H pip3 install --upgrade pip
 
 #pip  install
+if [ $mode = "full" ]
+then
+    pip_install numexpr
+    pip_install redis
+    pip_install bokeh
+    pip_install ipython
+    pip_install panda
+    pip_install pytest
+    pip_install flake8
+    pip_install numpydoc
+    pip_install xkcd
+fi
 pip_install setuptools
+pip_install seaborn
+pip_install pygame
+pip_install scipy
+pip_install matplotlib
 pip_install numpy
 pip_install sympy
-pip_install numexpr
-pip_install matplotlib
-pip_install redis
-pip_install bokeh
-pip_install ipython
-pip_install panda
-pip_install scipy
-pip_install pytest
-pip_install flake8
-pip_install numpydoc
-pip_install pygame
-pip_install xkcd
-pip_install seaborn
+
 
 # pycharm
 sudo snap install pycharm-community --classic
@@ -156,16 +162,18 @@ sudo apt-add-repository ppa:speth/cantera
 sudo aptitude update
 sudo aptitude install cantera-python cantera-python3 cantera-dev
 
-
 #
 # JR plot, CAD, mesh softwares
 #
 # Gnuplot (use qt backend)
-apt_install gnuplot
-apt_install gnuplot-doc
-apt_install gnuplot-qt
-apt_install python-gnuplot
-apt_install liblualib50-dev
+if [ $mode = "full" ]
+then
+    apt_install gnuplot
+    apt_install gnuplot-doc
+    apt_install gnuplot-qt
+    apt_install python-gnuplot
+    apt_install liblualib50-dev
+fi
 
 apt_install meshlab
 apt_install freecad
