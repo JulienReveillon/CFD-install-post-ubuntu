@@ -18,8 +18,8 @@ Stages :
 
     bash CFD-install-post-ubuntu1804-level1-baseCFD.sh > log.baseCFD
     
-warning : it will ask you for the sudo passwd several time, enter it.
-but do no sudo the whole script otherwise you will have owner/group problems
-be sure to have a fast internat connection, SALOME package > 3Go
-
+    warning : it will ask you for the sudo passwd several time, enter it.
+    but do no sudo the whole script otherwise you will have owner/group problems
+    be sure to have a fast internet connection, SALOME package is greater than 3Go
+    
 1. Restart ubuntu
