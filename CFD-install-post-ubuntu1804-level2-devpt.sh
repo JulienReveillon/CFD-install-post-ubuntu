@@ -6,7 +6,7 @@
 #------------------------------
 # Script to install basic CFD tools
 # Ubuntu 18.04
-# PLeas Execute :
+# Before, you should execute :
 # CFD-install-post-ubuntu1804-level1-baseCFD.sh before
 #------------------------------
 
@@ -34,57 +34,48 @@ cd ~
 # upgrade system
 sudo apt-get update
 sudo apt upgrade -y
-# version control
-apt_install git
-# Python3
-apt_install python3-pip
-apt_install python3-opengl
-sudo -H pip3 install --upgrade pip
-# Python libraries
-pip_install setuptools
-pip_install seaborn
-pip_install pygame
-pip_install scipy
-pip_install matplotlib
-pip_install numpy
-pip_install sympy
-# CAD
-apt_install meshlab
-apt_install freecad
-
-# OPENFOAM
-
-# OpenFoam fondation package
-echo "OpenFoam foundation package !"
-sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"
-sudo add-apt-repository http://dl.openfoam.org/ubuntu
-sudo apt-get update
-sudo apt-get -y install openfoam8
-echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
-. /opt/openfoam8/etc/bashrc
-mkdir -p "$FOAM_RUN"
-
-#olaflow (wave generation library)
-cd ~
-git clone git://github.com/phicau/olaFlow.git
-cd olaFlow
-./allMake
-cd ~
-
-### SALOME Mesh
-wget -O salome_dist.tar.gz "https://www.salome-platform.org/downloads/previous-versions/salome-v9.3/DownloadDistr?platform=OS1.UB18.04&version=9.3.0"
-if [ $? -eq 0 ]; then
-    tar -xzf salome_dist.tar.gz
-    if [ $? -eq 0 ]; then
-      echo "alias salome='~/SALOME-9.3.0-UB18.04-SRC/salome'" >> ~/.bashrc
-      rm -rf salome_dist.tar.gz
-    else
-      echo "could not uncompress SALOME"
-    fi
-else
-    echo "could not install SALOME"
-fi
-
+# edition
+apt_install vim
+apt_install ispell
+apt_install texstudio
+apt_install language-pack-fr-base
+apt_install language-pack-fr
+# prog development
+apt_install curl
+apt_install meld
+apt_install gcc
+apt_install g++
+apt_install gawk
+apt_install f2c
+apt_install gfortran
+apt_install autoconf
+apt_install automake
+apt_install autotools-dev
+apt_install hdf5-helpers
+apt_install hdf5-tools
+apt_install hdfview
+apt_install libhdf5-100
+apt_install libhdf5-cpp-100
+apt_install libhdf5-dev
+# image
+apt_install vlc
+apt_install inkscape
+apt_install imagemagick
+apt_install netpbm
+apt_install mjpegtools
+apt_install giftrans
+apt_install mplayer
+apt_install ffmpeg
+# python packages
+pip_install numexpr
+pip_install redis
+pip_install bokeh
+pip_install ipython
+pip_install panda
+pip_install pytest
+pip_install flake8
+pip_install numpydoc
+pip_install xkcd
 
 # THE END
 sudo apt-get clean
