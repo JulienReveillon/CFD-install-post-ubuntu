@@ -9,12 +9,17 @@
 #------------------------------
 # Stages :
 # 1/ Install Ubuntu 18.04
-# 2/ Install wget :          >sudo apt install wget
-# 3/ Download the script :   >wget xxx
-# 4/ execute the script :    >bash CFD-install-post-ubuntu1804-level1-baseCFD.sh > log.baseCFD
+# 2/ Be sure that you uptated your Ubuntu installation
+# 3/ Install wget (it is already done by default generally) :
+#    > sudo apt install wget
+# 4/ Download the script :
+#    > wget xxx
+# 4/ execute the script :
+#    > bash CFD-install-post-ubuntu1804-level1-baseCFD.sh > log.baseCFD
 #    warning : it will ask you for the sudo passwd several time, enter it.
 #    but do no sudo the whole script otherwise you will have owner/group problems
 # 5/
+# 8/ Restart ubuntu
 #
 
 set -x  # make sure each command is printed
@@ -67,7 +72,7 @@ sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"
 sudo add-apt-repository http://dl.openfoam.org/ubuntu
 sudo apt-get update
 sudo apt-get -y install openfoam8
-echo "alias of80='. /opt/openfoam8/etc/bashrc'" >> ~/.bashrc
+echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
 . /opt/openfoam8/etc/bashrc
 mkdir -p "$FOAM_RUN"
 
@@ -79,13 +84,12 @@ cd olaFlow
 cd ~
 
 ### SALOME Mesh
-#wget https://www.salome-platform.org/downloads/previous-versions/salome-v9.3/DownloadDistr?platform=OS1.UB18.04&version=9.3.0
-wget https://www.salome-platform.org/downloads/current-version/DownloadDistr?platform=SP.UB18.04&version=9.5.0
+wget -O salome_dist.tar.gz "https://www.salome-platform.org/downloads/previous-versions/salome-v9.3/DownloadDistr?platform=OS1.UB18.04&version=9.3.0"
 if [ $? -eq 0 ]; then
-    tar -xzf SALOME-9.5.0-UB18.04-SRC.tar.gz
+    tar -xzf salome_dist.tar.gz
     if [ $? -eq 0 ]; then
-      echo "alias salome='~/SALOME-9.5.0-UB18.04-SRC/salome'" >> ~/.bashrc
-      rm -rf SALOME-9.5.0-UB18.04-SRC.tar.gz
+      echo "alias salome='~/SALOME-9.3.0-UB18.04-SRC/salome'" >> ~/.bashrc
+      rm -rf salome_dist.tar.gz
     else
       echo "could not uncompress SALOME"
     fi
