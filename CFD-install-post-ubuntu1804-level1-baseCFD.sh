@@ -4,23 +4,9 @@
 #-  Julien.Reveillon@coria.fr -
 #-  24/10/2020 ----------------
 #------------------------------
-# Script to install basic CFD tools
+# Script to install basic CFD and THERMO tools
 # Ubuntu 18.04
 #------------------------------
-# Stages :
-# 1/ Install Ubuntu 18.04
-# 2/ Be sure that you uptated your Ubuntu installation
-# 3/ Install wget (it is already done by default generally) :
-#    > sudo apt install wget
-# 4/ Download the script :
-#    > wget xxx
-# 4/ execute the script :
-#    > bash CFD-install-post-ubuntu1804-level1-baseCFD.sh > log.baseCFD
-#    warning : it will ask you for the sudo passwd several time, enter it.
-#    but do no sudo the whole script otherwise you will have owner/group problems
-# 5/
-# 8/ Restart ubuntu
-#
 
 set -x  # make sure each command is printed
 
@@ -48,6 +34,10 @@ sudo apt-get update
 sudo apt upgrade -y
 # version control
 apt_install git
+# editeur
+sudo add-apt-repository ppa:webupd8team/atom -y
+sudo apt-get update
+apt_install atom
 # Python3
 apt_install python3-pip
 apt_install python3-opengl
@@ -64,9 +54,13 @@ pip_install sympy
 apt_install meshlab
 apt_install freecad
 
-# OPENFOAM
+# CANTERA - thermodynamic python library
+sudo aptitude install python-software-properties
+sudo apt-add-repository ppa:speth/cantera
+sudo aptitude update
+sudo aptitude install cantera-python cantera-python3 cantera-dev
 
-# OpenFoam fondation package
+# OPENFOAM OpenFoam fondation package
 echo "OpenFoam foundation package !"
 sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"
 sudo add-apt-repository http://dl.openfoam.org/ubuntu
