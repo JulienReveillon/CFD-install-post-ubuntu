@@ -55,10 +55,10 @@ apt_install meshlab
 apt_install freecad
 
 # CANTERA - thermodynamic python library
-sudo aptitude install python-software-properties
-sudo apt-add-repository ppa:speth/cantera
-sudo aptitude update
-sudo aptitude install cantera-python cantera-python3 cantera-dev
+#sudo aptitude install python-software-properties
+#sudo apt-add-repository ppa:speth/cantera
+#sudo aptitude update
+#sudo aptitude install cantera-python cantera-python3 cantera-dev
 
 # OPENFOAM OpenFoam fondation package
 echo "OpenFoam foundation package !"
