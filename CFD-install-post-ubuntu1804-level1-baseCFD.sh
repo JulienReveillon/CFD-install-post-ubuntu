@@ -91,6 +91,11 @@ else
     echo "could not install SALOME"
 fi
 
+# SUPRESS REPORT ERROR MESSAGES
+sudo rm -v /var/crash/*
+sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
+sudo systemctl disable apport.service
+sudo systemctl mask apport.service
 
 # THE END
 sudo apt-get clean
