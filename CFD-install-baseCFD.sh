@@ -70,6 +70,9 @@ echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
 . /opt/openfoam8/etc/bashrc
 mkdir -p "$FOAM_RUN"
 
+# External Openfoam packages
+pip_install PyFoam
+
 #olaflow (wave generation library)
 cd ~
 git clone git://github.com/phicau/olaFlow.git
