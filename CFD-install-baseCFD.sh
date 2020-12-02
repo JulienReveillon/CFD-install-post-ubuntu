@@ -38,6 +38,7 @@ apt_install git
 sudo add-apt-repository ppa:webupd8team/atom -y
 sudo apt-get update
 apt_install atom
+apt_install tree
 # Python3
 apt_install python3-pip
 apt_install python3-opengl
