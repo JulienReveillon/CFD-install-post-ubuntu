@@ -2,7 +2,7 @@
 #------------------------------
 #-  Julien Reveillon ----------
 #-  Julien.Reveillon@coria.fr -
-#-  24/10/2020 ----------------
+#-  07/11/2020 ----------------
 #------------------------------
 # Script to install basic CFD and THERMO tools
 # Ubuntu 18.04
@@ -38,6 +38,7 @@ apt_install git
 sudo add-apt-repository ppa:webupd8team/atom -y
 sudo apt-get update
 apt_install atom
+apt_install tree
 # Python3
 apt_install python3-pip
 apt_install python3-opengl
@@ -69,6 +70,9 @@ sudo apt-get -y install openfoam8
 echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
 . /opt/openfoam8/etc/bashrc
 mkdir -p "$FOAM_RUN"
+
+# External Openfoam packages
+pip_install PyFoam
 
 #olaflow (wave generation library)
 cd ~
