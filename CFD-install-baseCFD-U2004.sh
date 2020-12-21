@@ -60,6 +60,30 @@ pip_install PyFoam
 apt_install meshlab
 apt_install freecad
 
+# OPENFOAM OpenFoam ESI package
+if [ $ofESI = "on" ]; then
+    echo "--------------------------------------------"
+    echo "----     Install : OpenFoam - ESI"
+    echo "--------------------------------------------"
+    curl -s https://dl.openfoam.com/add-debian-repo.sh -o add-debian-repo.sh
+    sudo bash add-debian-repo.sh
+    sudo apt-get install openfoam2006-default
+    
+    # /usr/lib/openfoam/openfoam2006 sources & co
+    # /usr/bin/openfoam2006 : bash session location
+    if [ $offondation = "on" ]; then
+        echo "alias ofcom='. /usr/bin/openfoam2006'" >> ~/.bashrc
+    else
+        echo ". /usr/bin/openfoam2006" >> ~/.bashrc
+    fi
+    . /usr/bin/openfoam2006
+    mkdir -p "$FOAM_RUN"
+else
+    echo "--------------------------------------------"
+    echo "----     NO install : OpenFoam - ESI"
+    echo "--------------------------------------------"
+fi
+### OpenFoam - End ESI package
 
 # OPENFOAM OpenFoam fondation package
 if [ $offondation = "on" ]; then
@@ -71,7 +95,7 @@ if [ $offondation = "on" ]; then
     sudo add-apt-repository http://dl.openfoam.org/ubuntu
     sudo apt-get update
     apt_install openfoam8
-    if [ $ofESI = "on" ] ; then
+    if [ $ofESI = "on" ]; then
         echo "alias oforg='. /opt/openfoam8/etc/bashrc'" >> ~/.bashrc
     else
         echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
@@ -87,6 +111,7 @@ else
     echo "----     NO install : OpenFoam Fondation"
     echo "--------------------------------------------"
 fi
+### OpenFoam - End Fondation package
 
 #olaflow (wave generation library)
 if [ $olaflow = "on" ]; then
@@ -104,28 +129,6 @@ else
     echo "--------------------------------------------"
 fi
 
-# OPENFOAM OpenFoam fondation package
-if [ $ofESI = "on" ]; then
-    echo "--------------------------------------------"
-    echo "----     Install : OpenFoam - ESI"
-    echo "--------------------------------------------"
-    curl -s https://dl.openfoam.com/add-debian-repo.sh | sudo bash
-    wget -q -O - https://dl.openfoam.com/add-debian-repo.sh | sudo bash
-    apt_install openfoam2006-default
-    # /usr/lib/openfoam/openfoam2006 sources & co
-    # /usr/bin/openfoam2006 : bash session location
-    if [ $offondation = "on" ]; then
-        echo "alias ofcom='. /usr/bin/openfoam2006'" >> ~/.bashrc
-    else
-        echo ". /usr/bin/openfoam2006" >> ~/.bashrc
-    fi
-    . /usr/bin/openfoam2006
-    mkdir -p "$FOAM_RUN"
-else
-    echo "--------------------------------------------"
-    echo "----     NO install : OpenFoam - ESI"
-    echo "--------------------------------------------"
-fi
 
 #### SALOME Mesh
 if [ $salome = "on" ]; then
@@ -138,7 +141,7 @@ if [ $salome = "on" ]; then
     wget -O salome_dist.tar.gz "https://www.salome-platform.org/downloads/current-version/DownloadDistr?platform=SP.UB20.04&version=9.6.0"
     if [ $? -eq 0 ]; then
         tar -xzf salome_dist.tar.gz
-        if [ $? -eq 0 ] ; then
+        if [ $? -eq 0 ]; then
             echo "alias salome='~/SALOME-9.6.0-UB20.04-SRC/salome'" >> ~/.bashrc
             rm -rf salome_dist.tar.gz
         else
