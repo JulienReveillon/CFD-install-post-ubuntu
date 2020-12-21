@@ -16,6 +16,7 @@
 #------------------------------
 offondation="on"   
 ofESI="on"
+olaflow="on"
 salome="on"
 
 set -x  # make sure each command is printed
