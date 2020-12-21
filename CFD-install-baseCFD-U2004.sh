@@ -8,9 +8,8 @@
 #------------------------------
 #
 offondation="on" 
-ofESI="on"
+ofESI="off"
 salome="on"
-cantera="on"
 
 set -x  # make sure each command is printed
 
@@ -39,6 +38,7 @@ sudo apt upgrade -y
 # version control
 apt_install git
 # system
+apt_install aptitude
 apt_install curl
 apt_install tree
 apt_install meld
@@ -60,25 +60,22 @@ apt_install meshlab
 apt_install freecad
 
 
-# CANTERA - thermodynamic python library
-if [ $cantera = "on" ]
-then
-    sudo aptitude install python-software-properties
-    sudo apt-add-repository ppa:speth/cantera
-    sudo aptitude update
-    sudo aptitude install cantera-python cantera-python3 cantera-dev
-fi
-
-
 # OPENFOAM OpenFoam fondation package
 if [ $offondation = "on" ]
 then
+    echo "--------------------------------------------"
+    echo "----     Install : OpenFoam Fondation"
+    echo "--------------------------------------------"
     echo "Install openFoam foundation package !"
     sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"
     sudo add-apt-repository http://dl.openfoam.org/ubuntu
     sudo apt-get update
-    sudo apt-get -y install openfoam8
-    echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
+    apt_install openfoam8
+    if [ $ofESI = "on" ]
+        echo "alias oforg='. /opt/openfoam8/etc/bashrc'" >> ~/.bashrc
+    else
+        echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
+    fi
     . /opt/openfoam8/etc/bashrc
     mkdir -p "$FOAM_RUN"
     # openfoam suggested install
@@ -88,21 +85,59 @@ then
 
     # External Openfoam packages
     pip_install PyFoam
+else
+    echo "--------------------------------------------"
+    echo "----     NO install : OpenFoam Fondation"
+    echo "--------------------------------------------"
 fi
 
 #olaflow (wave generation library)
 if [ $olaflow = "on" ]
 then
+    echo "--------------------------------------------"
+    echo "----     Install : olaflow"
+    echo "--------------------------------------------"
     cd ~
     git clone git://github.com/phicau/olaFlow.git
     cd olaFlow
     ./allMake
     cd ~
+else
+    echo "--------------------------------------------"
+    echo "----     NO install : olaflow"
+    echo "--------------------------------------------"
+fi
+
+# OPENFOAM OpenFoam fondation package
+if [ $ofESI = "on" ]
+then
+    echo "--------------------------------------------"
+    echo "----     Install : OpenFoam - ESI"
+    echo "--------------------------------------------"
+    curl -s https://dl.openfoam.com/add-debian-repo.sh | sudo bash
+    wget -q -O - https://dl.openfoam.com/add-debian-repo.sh | sudo bash
+    apt_install openfoam2006-default
+    # /usr/lib/openfoam/openfoam2006 sources & co
+    # /usr/bin/openfoam2006 : bash session location
+    if [ $offondation = "on" ]
+        echo "alias ofcom='. /usr/bin/openfoam2006'" >> ~/.bashrc
+    else
+        echo ". /usr/bin/openfoam2006" >> ~/.bashrc
+    fi
+    . /usr/bin/openfoam2006
+    mkdir -p "$FOAM_RUN"
+else
+    echo "--------------------------------------------"
+    echo "----     NO install : OpenFoam - ESI"
+    echo "--------------------------------------------"
 fi
 
 #### SALOME Mesh
 if [ $salome = "on" ]
 then
+    echo "--------------------------------------------"
+    echo "----     Install : salome"
+    echo "--------------------------------------------"
     # necessary library
     apt_install libtbb-dev
     # download salome
@@ -118,6 +153,10 @@ then
     else
         echo "could not install SALOME"
     fi
+else
+    echo "--------------------------------------------"
+    echo "----     NO install : salome"
+    echo "--------------------------------------------"
 fi
 
 # clean
