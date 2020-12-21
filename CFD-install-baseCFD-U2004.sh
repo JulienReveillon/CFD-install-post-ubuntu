@@ -67,7 +67,7 @@ if [ $ofESI = "on" ]; then
     echo "--------------------------------------------"
     curl -s https://dl.openfoam.com/add-debian-repo.sh -o add-debian-repo.sh
     sudo bash add-debian-repo.sh
-    sudo apt-get install openfoam2006-default
+    sudo apt-get -y install openfoam2006-default
     
     # /usr/lib/openfoam/openfoam2006 sources & co
     # /usr/bin/openfoam2006 : bash session location
