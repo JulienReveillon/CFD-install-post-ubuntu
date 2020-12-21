@@ -3,11 +3,18 @@
 #-  Julien Reveillon ----------
 #-  Julien.Reveillon@coria.fr -
 #-  21/12/2020 ----------------
+#
 #------------------------------
-# Script to install basic CFD and THERMO tools
+# Script to install basic CFD  tools
 #------------------------------
 #
-offondation="on" 
+# README : after charging for the first time your OF 
+#          environment (oforg or ofcom) create your run directory. 
+#          type in the terminal :
+#          mkdir -p $FOAM_RUN
+#
+#------------------------------
+offondation="on"   
 ofESI="on"
 salome="on"
 
