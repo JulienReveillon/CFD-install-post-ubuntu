@@ -129,7 +129,8 @@ if [ $ofESI = "on" ]; then
        echo "alias ofcom='. /usr/bin/openfoam2006'" >> ~/.bashrc    
     fi
     . /usr/lib/openfoam/openfoam2006/etc/bashrc
-    mkdir -p "$FOAM_RUN"else
+    mkdir -p "$FOAM_RUN"
+else
     echo "--------------------------------------------"
     echo "----     NO install : OpenFoam - ESI"
     echo "--------------------------------------------"
