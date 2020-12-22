@@ -81,11 +81,11 @@ if [ $offondation = "on" ]; then
     apt_install openfoam8
     if [ $ofESI != "on" ]; then
        echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
-       . /opt/openfoam8/etc/bashrc
-       mkdir -p "$FOAM_RUN"
     else
-       echo "alias oforg='. /opt/openfoam8/etc/bashrc'" >> ~/.bashrc  
+       echo "alias oforg='. /opt/openfoam8/etc/bashrc'" >> ~/.bashrc
     fi
+    . /opt/openfoam8/etc/bashrc
+    mkdir -p "$FOAM_RUN"
     #### option suggested non necessary packages  : begin comment
     sudo apt-get -y install bison flex-doc gnuplot-doc libboost-doc libboost1.71-doc libboost-container1.71-dev libboost-context1.71-dev libboost-contract1.71 dev libboost-coroutine1.71-dev libboost-exception1.71-dev libboost-fiber1.71-dev libboost-filesystem1.71-dev libboost-graph1.71-dev libboost-graph-parallel1.71-dev libboost-iostreams1.71-dev libboost-locale1.71-dev libboost-log1.71-dev libboost-math1.71-dev libboost-mpi1.71-dev libboost-mpi-python1.71-dev libboost-numpy1.71-dev libboost-python1.71-dev libboost-random1.71-dev libboost-regex1.71-dev libboost-stacktrace1.71-dev libboost-test1.71-dev libboost-timer1.71-dev libboost-type-erasure1.71-dev libboost-wave1.71-dev libboost1.71-tools-dev libmpfrc++-dev libntl-dev libmpfi-dev gmp-doc libgmp10-doc libice-doc libmpfr-doc ncurses-doc readline-doc libsm-doc libx11-doc libxcb-doc libxext-doc libxt-doc python2-doc python-tk python2.7-doc binfmt-support qt5-doc default-libmysqlclient-dev firebird-dev libpq-dev libsqlite3-dev unixodbc-dev
     #### option suggested non necessary packages : end comment
@@ -124,12 +124,12 @@ if [ $ofESI = "on" ]; then
     apt_install openfoam2006-default
     if [ $offondation != "on" ]; then
        echo ". /usr/lib/openfoam/openfoam2006/etc/bashrc" >> ~/.bashrc
-       . /usr/lib/openfoam/openfoam2006/etc/bashrc
-       mkdir -p "$FOAM_RUN"
+
     else
        echo "alias ofcom='. /usr/bin/openfoam2006'" >> ~/.bashrc    
     fi
-else
+    . /usr/lib/openfoam/openfoam2006/etc/bashrc
+    mkdir -p "$FOAM_RUN"else
     echo "--------------------------------------------"
     echo "----     NO install : OpenFoam - ESI"
     echo "--------------------------------------------"
