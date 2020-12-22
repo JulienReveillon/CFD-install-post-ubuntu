@@ -79,9 +79,14 @@ if [ $ofESI = "on" ]; then
     
     # /usr/lib/openfoam/openfoam2006 sources & co
     # /usr/bin/openfoam2006 : bash session location
-    echo "alias ofcom='. /usr/bin/openfoam2006'" >> ~/.bashrc
-    #. /usr/bin/openfoam2006
-    #mkdir -p "$FOAM_RUN"
+    
+    if [ $offondation != "on" ]; then
+       echo ". /usr/bin/openfoam2006" >> ~/.bashrc
+       . /usr/bin/openfoam2006
+       mkdir -p "$FOAM_RUN"
+    else
+       echo "alias ofcom='. /usr/bin/openfoam2006'" >> ~/.bashrc    
+    fi
 else
     echo "--------------------------------------------"
     echo "----     NO install : OpenFoam - ESI"
@@ -99,7 +104,13 @@ if [ $offondation = "on" ]; then
     sudo add-apt-repository http://dl.openfoam.org/ubuntu
     sudo apt-get update
     apt_install openfoam8
-    echo "alias oforg='. /opt/openfoam8/etc/bashrc'" >> ~/.bashrc
+    if [ $ofESI != "on" ]; then
+       echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
+       . /opt/openfoam8/etc/bashrc
+       mkdir -p "$FOAM_RUN"
+    else
+       echo "alias oforg='. /opt/openfoam8/etc/bashrc'" >> ~/.bashrc  
+    fi
     #. /opt/openfoam8/etc/bashrc
     #mkdir -p "$FOAM_RUN"
     # openfoam suggested install
