@@ -2,11 +2,22 @@
 #------------------------------
 #-  Julien Reveillon ----------
 #-  Julien.Reveillon@coria.fr -
-#-  07/11/2020 ----------------
+#-  21/12/2020 ----------------
+#
 #------------------------------
-# Script to install basic CFD and THERMO tools
-# Ubuntu 18.04
+# Script to install basic CFD  tools
 #------------------------------
+#
+# README : after charging for the first time your OF 
+#          environment (oforg or ofcom) create your run directory. 
+#          type in the terminal :
+#          mkdir -p $FOAM_RUN
+#
+#------------------------------
+offondation="on"
+olaflow="on" #olaflow is installed only with the fondation version 
+ofESI="off"
+salome="on"
 
 set -x  # make sure each command is printed
 
@@ -29,15 +40,14 @@ function pip_install {
 
 # user root
 cd ~
-# upgrade system
+# update system
 sudo apt-get update
 sudo apt upgrade -y
 # version control
 apt_install git
-# editeur
-sudo add-apt-repository ppa:webupd8team/atom -y
-sudo apt-get update
-apt_install atom
+# system
+apt_install aptitude
+apt_install curl
 apt_install tree
 apt_install meld
 # Python3
@@ -45,6 +55,7 @@ apt_install python3-pip
 apt_install python3-opengl
 sudo -H pip3 install --upgrade pip
 # Python libraries
+pip_install testresources
 pip_install setuptools
 pip_install seaborn
 pip_install pygame
@@ -52,51 +63,109 @@ pip_install scipy
 pip_install matplotlib
 pip_install numpy
 pip_install sympy
+pip_install PyFoam
 # CAD
 apt_install meshlab
 apt_install freecad
 
-# CANTERA - thermodynamic python library
-#sudo aptitude install python-software-properties
-#sudo apt-add-repository ppa:speth/cantera
-#sudo aptitude update
-#sudo aptitude install cantera-python cantera-python3 cantera-dev
 
 # OPENFOAM OpenFoam fondation package
-echo "OpenFoam foundation package !"
-sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"
-sudo add-apt-repository http://dl.openfoam.org/ubuntu
-sudo apt-get update
-sudo apt-get -y install openfoam8
-echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
-. /opt/openfoam8/etc/bashrc
-mkdir -p "$FOAM_RUN"
-
-# External Openfoam packages
-pip_install PyFoam
-
-#olaflow (wave generation library)
-cd ~
-git clone git://github.com/phicau/olaFlow.git
-cd olaFlow
-./allMake
-cd ~
-
-### SALOME Mesh
-wget -O salome_dist.tar.gz "https://www.salome-platform.org/downloads/previous-versions/salome-v9.3/DownloadDistr?platform=OS1.UB18.04&version=9.3.0"
-if [ $? -eq 0 ]; then
-    tar -xzf salome_dist.tar.gz
-    if [ $? -eq 0 ]; then
-      echo "alias salome='~/SALOME-9.3.0-UB18.04-SRC/salome'" >> ~/.bashrc
-      rm -rf salome_dist.tar.gz
+if [ $offondation = "on" ]; then
+    echo "--------------------------------------------"
+    echo "----     Install : OpenFoam Fondation"
+    echo "--------------------------------------------"
+    echo "Install openFoam foundation package !"
+    sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"
+    sudo add-apt-repository http://dl.openfoam.org/ubuntu
+    sudo apt-get update
+    apt_install openfoam8
+    if [ $ofESI != "on" ]; then
+       echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
     else
-      echo "could not uncompress SALOME"
+       echo "alias oforg='. /opt/openfoam8/etc/bashrc'" >> ~/.bashrc
+    fi
+    . /opt/openfoam8/etc/bashrc
+    mkdir -p "$FOAM_RUN"
+    #### option suggested non necessary packages  : begin comment
+    sudo apt-get -y install bison flex-doc gnuplot-doc libboost-doc libboost1.71-doc libboost-container1.71-dev libboost-context1.71-dev libboost-contract1.71 dev libboost-coroutine1.71-dev libboost-exception1.71-dev libboost-fiber1.71-dev libboost-filesystem1.71-dev libboost-graph1.71-dev libboost-graph-parallel1.71-dev libboost-iostreams1.71-dev libboost-locale1.71-dev libboost-log1.71-dev libboost-math1.71-dev libboost-mpi1.71-dev libboost-mpi-python1.71-dev libboost-numpy1.71-dev libboost-python1.71-dev libboost-random1.71-dev libboost-regex1.71-dev libboost-stacktrace1.71-dev libboost-test1.71-dev libboost-timer1.71-dev libboost-type-erasure1.71-dev libboost-wave1.71-dev libboost1.71-tools-dev libmpfrc++-dev libntl-dev libmpfi-dev gmp-doc libgmp10-doc libice-doc libmpfr-doc ncurses-doc readline-doc libsm-doc libx11-doc libxcb-doc libxext-doc libxt-doc python2-doc python-tk python2.7-doc binfmt-support qt5-doc default-libmysqlclient-dev firebird-dev libpq-dev libsqlite3-dev unixodbc-dev
+    #### option suggested non necessary packages : end comment
+    #olaflow (wave generation library)
+    if [ $olaflow = "on" ]; then
+       echo "--------------------------------------------"
+       echo "----     Install : olaflow"
+       echo "--------------------------------------------"
+       cd ~
+       git clone git://github.com/phicau/olaFlow.git
+       cd olaFlow
+       ./allMake
+       cd ~
+    else
+       echo "--------------------------------------------"
+       echo "----     NO install : olaflow"
+       echo "--------------------------------------------" 
     fi
 else
-    echo "could not install SALOME"
+    echo "--------------------------------------------"
+    echo "----     NO install : OpenFoam Fondation"
+    echo "--------------------------------------------"
 fi
+### OpenFoam - End Fondation package
+
+# OPENFOAM OpenFoam ESI package
+# /usr/lib/openfoam/openfoam2006 sources & co
+# /usr/bin/openfoam2006 : bash session location
+if [ $ofESI = "on" ]; then
+    echo "--------------------------------------------"
+    echo "----     Install : OpenFoam - ESI"
+    echo "--------------------------------------------"
+    curl -s https://dl.openfoam.com/add-debian-repo.sh -o add-debian-repo.sh
+    sudo bash add-debian-repo.sh
+    sudo rm -f add-debian-repo.sh
+    sudo apt-get update
+    apt_install openfoam2006-default
+    if [ $offondation != "on" ]; then
+       echo ". /usr/lib/openfoam/openfoam2006/etc/bashrc" >> ~/.bashrc
+    else
+       echo "alias ofcom='. /usr/bin/openfoam2006'" >> ~/.bashrc    
+    fi
+    . /usr/lib/openfoam/openfoam2006/etc/bashrc
+    mkdir -p "$FOAM_RUN"
+else
+    echo "--------------------------------------------"
+    echo "----     NO install : OpenFoam - ESI"
+    echo "--------------------------------------------"
+fi
+### OpenFoam - End ESI package
 
 
+
+#### SALOME Mesh
+if [ $salome = "on" ]; then
+    echo "--------------------------------------------"
+    echo "----     Install : salome"
+    echo "--------------------------------------------"
+    # necessary library
+    apt_install libtbb-dev
+    # download salome
+    wget -O salome_dist.tar.gz "https://www.salome-platform.org/downloads/current-version/DownloadDistr?platform=SP.UB20.04&version=9.6.0"
+    if [ $? -eq 0 ]; then
+        tar -xzf salome_dist.tar.gz
+        if [ $? -eq 0 ]; then
+            echo "alias salome='~/SALOME-9.6.0-UB20.04-SRC/salome'" >> ~/.bashrc
+            rm -rf salome_dist.tar.gz
+        else
+            echo "could not uncompress SALOME"
+        fi
+    else
+        echo "could not install SALOME"
+    fi
+else
+    echo "--------------------------------------------"
+    echo "----     NO install : salome"
+    echo "--------------------------------------------"
+fi
+# personnal setup
+echo "alias h='history'" >> ~/.bashrc 
 # clean
 sudo apt-get clean
 sudo apt-get autoclean
