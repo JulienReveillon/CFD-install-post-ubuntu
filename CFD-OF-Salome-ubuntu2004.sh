@@ -120,11 +120,11 @@ if [ $ofESI = "on" ]; then
     echo "--------------------------------------------"
     curl -s https://dl.openfoam.com/add-debian-repo.sh -o add-debian-repo.sh
     sudo bash add-debian-repo.sh
+    sudo rm -f add-debian-repo.sh
     sudo apt-get update
     apt_install openfoam2006-default
     if [ $offondation != "on" ]; then
        echo ". /usr/lib/openfoam/openfoam2006/etc/bashrc" >> ~/.bashrc
-
     else
        echo "alias ofcom='. /usr/bin/openfoam2006'" >> ~/.bashrc    
     fi
