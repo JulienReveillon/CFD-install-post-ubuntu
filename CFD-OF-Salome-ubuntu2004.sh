@@ -75,7 +75,6 @@ if [ $offondation = "on" ]; then
     echo "----     Install : OpenFoam Fondation"
     echo "--------------------------------------------"
     echo "Install openFoam foundation package !"
-    apt_install paraview
     sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"
     sudo add-apt-repository http://dl.openfoam.org/ubuntu
     sudo apt-get update
@@ -119,6 +118,7 @@ if [ $ofESI = "on" ]; then
     echo "--------------------------------------------"
     echo "----     Install : OpenFoam - ESI"
     echo "--------------------------------------------"
+    apt_install paraview
     curl -s https://dl.openfoam.com/add-debian-repo.sh -o add-debian-repo.sh
     sudo bash add-debian-repo.sh
     sudo rm -f add-debian-repo.sh
