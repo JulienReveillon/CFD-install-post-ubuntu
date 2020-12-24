@@ -75,6 +75,7 @@ if [ $offondation = "on" ]; then
     echo "----     Install : OpenFoam Fondation"
     echo "--------------------------------------------"
     echo "Install openFoam foundation package !"
+    apt_install paraview
     sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"
     sudo add-apt-repository http://dl.openfoam.org/ubuntu
     sudo apt-get update
