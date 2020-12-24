@@ -8,14 +8,14 @@
 # Script to install basic CFD  tools
 #------------------------------
 #
-# README : after charging for the first time your OF 
-#          environment (oforg or ofcom) create your run directory. 
+# README : after charging for the first time your OF
+#          environment (oforg or ofcom) create your run directory.
 #          type in the terminal :
 #          mkdir -p $FOAM_RUN
 #
 #------------------------------
 offondation="on"
-olaflow="on" #olaflow is installed only with the fondation version 
+olaflow="on" #olaflow is installed only with the fondation version
 ofESI="off"
 salome="on"
 
@@ -102,7 +102,7 @@ if [ $offondation = "on" ]; then
     else
        echo "--------------------------------------------"
        echo "----     NO install : olaflow"
-       echo "--------------------------------------------" 
+       echo "--------------------------------------------"
     fi
 else
     echo "--------------------------------------------"
@@ -112,8 +112,8 @@ fi
 ### OpenFoam - End Fondation package
 
 # OPENFOAM OpenFoam ESI package
-# /usr/lib/openfoam/openfoam2006 sources & co
-# /usr/bin/openfoam2006 : bash session location
+# /usr/lib/openfoam/openfoam2012 sources & co
+# /usr/bin/openfoam2012 : bash session location
 if [ $ofESI = "on" ]; then
     echo "--------------------------------------------"
     echo "----     Install : OpenFoam - ESI"
@@ -122,13 +122,13 @@ if [ $ofESI = "on" ]; then
     sudo bash add-debian-repo.sh
     sudo rm -f add-debian-repo.sh
     sudo apt-get update
-    apt_install openfoam2006-default
+    apt_install openfoam2012-default
     if [ $offondation != "on" ]; then
-       echo ". /usr/lib/openfoam/openfoam2006/etc/bashrc" >> ~/.bashrc
+       echo ". /usr/lib/openfoam/openfoam2012/etc/bashrc" >> ~/.bashrc
     else
-       echo "alias ofcom='. /usr/bin/openfoam2006'" >> ~/.bashrc    
+       echo "alias ofcom='. /usr/lib/openfoam/openfoam2012/etc/bashrc'" >> ~/.bashrc
     fi
-    . /usr/lib/openfoam/openfoam2006/etc/bashrc
+    . /usr/lib/openfoam/openfoam2012/etc/bashrc
     mkdir -p "$FOAM_RUN"
 else
     echo "--------------------------------------------"
@@ -165,7 +165,7 @@ else
     echo "--------------------------------------------"
 fi
 # personnal setup
-echo "alias h='history'" >> ~/.bashrc 
+echo "alias h='history'" >> ~/.bashrc
 # clean
 sudo apt-get clean
 sudo apt-get autoclean
