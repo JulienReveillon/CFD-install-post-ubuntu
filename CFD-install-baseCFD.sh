@@ -118,6 +118,7 @@ if [ $ofESI = "on" ]; then
     echo "--------------------------------------------"
     echo "----     Install : OpenFoam - ESI"
     echo "--------------------------------------------"
+    apt_install paraview
     curl -s https://dl.openfoam.com/add-debian-repo.sh -o add-debian-repo.sh
     sudo bash add-debian-repo.sh
     sudo rm -f add-debian-repo.sh
