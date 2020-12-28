@@ -16,7 +16,7 @@
 #------------------------------
 offondation="on"
 olaflow="on" #olaflow is installed only with the fondation version
-ofESI="off"
+ofESI="on"
 salome="on"
 
 set -x  # make sure each command is printed
