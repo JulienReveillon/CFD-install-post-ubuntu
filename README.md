@@ -8,26 +8,18 @@ https://www.julienreveillon.com/cfd-virtual-machines
 ## Description 
 Script to post install Ubuntu LTS with
 1. computational fluid dynamics (CFD) codes : 
-   1. OpenFoam - Foundation version (.org)
-   1. OpenFoam - ESI/OpenCFD version (.com)
+   + OpenFoam - Foundation version (.org)
+   + OpenFoam - ESI/OpenCFD version (.com)
 1. CAD Tools
-   1. SALOME mesh (CAD + meshing)
-   1. meshlab
-   1. freecad
+   + SALOME mesh (CAD + meshing)
+   + meshlab
+   + freecad
 1. Python3 librairies to plot and analyze data 
-   1. matplotlib
-   1. scipy
-   1. numpy
-   1. sympy
-   1. PyFoam
-   1. seaborn
-   1. pygame
+   + matplotlib, scipy, numpy, sympy
+   + PyFoam
+   + seaborn, pygame
 1. Usefull tools
-   1. git
-   1. aptitude
-   1. curl
-   1. tree
-   1. meld
+   + git, aptitude, curl, tree, meld
    
 
 ## How to use :
