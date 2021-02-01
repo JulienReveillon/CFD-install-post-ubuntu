@@ -167,6 +167,7 @@ else
 fi
 # personnal setup
 echo "alias h='history'" >> ~/.bashrc
+echo "shopt -s direxpand" >> ~/.bashrc
 # clean
 sudo apt-get clean
 sudo apt-get autoclean
