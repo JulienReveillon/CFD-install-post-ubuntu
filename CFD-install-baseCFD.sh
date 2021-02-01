@@ -167,11 +167,11 @@ else
 fi
 # personnal setup
 echo "alias h='history'" >> ~/.bashrc
+echo "shopt -s direxpand" >> ~/.bashrc
 # clean
 sudo apt-get clean
 sudo apt-get autoclean
 sudo apt-get -y autoremove
-
 # SUPRESS REPORT ERROR MESSAGES
 sudo rm -v /var/crash/*
 sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
