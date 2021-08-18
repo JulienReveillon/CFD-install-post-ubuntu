@@ -14,9 +14,9 @@
 #          mkdir -p $FOAM_RUN
 #
 #------------------------------
-offondation="on"
-olaflow="on" #olaflow is installed only with the fondation version
-ofESI="off"
+offondation="off"
+olaflow="off" #olaflow is installed only with the fondation version
+ofESI="on"
 salome="on"
 
 set -x  # make sure each command is printed
@@ -78,13 +78,13 @@ if [ $offondation = "on" ]; then
     sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"
     sudo add-apt-repository http://dl.openfoam.org/ubuntu
     sudo apt-get update
-    apt_install openfoam8
+    apt_install openfoam9
     if [ $ofESI != "on" ]; then
-       echo ". /opt/openfoam8/etc/bashrc" >> ~/.bashrc
+       echo ". /opt/openfoam9/etc/bashrc" >> ~/.bashrc
     else
-       echo "alias oforg='. /opt/openfoam8/etc/bashrc'" >> ~/.bashrc
+       echo "alias oforg='. /opt/openfoam9/etc/bashrc'" >> ~/.bashrc
     fi
-    . /opt/openfoam8/etc/bashrc
+    . /opt/openfoam9/etc/bashrc
     mkdir -p "$FOAM_RUN"
     #### option suggested non necessary packages  : begin comment
     sudo apt-get -y install bison flex-doc gnuplot-doc libboost-doc libboost1.71-doc libboost-container1.71-dev libboost-context1.71-dev libboost-contract1.71 dev libboost-coroutine1.71-dev libboost-exception1.71-dev libboost-fiber1.71-dev libboost-filesystem1.71-dev libboost-graph1.71-dev libboost-graph-parallel1.71-dev libboost-iostreams1.71-dev libboost-locale1.71-dev libboost-log1.71-dev libboost-math1.71-dev libboost-mpi1.71-dev libboost-mpi-python1.71-dev libboost-numpy1.71-dev libboost-python1.71-dev libboost-random1.71-dev libboost-regex1.71-dev libboost-stacktrace1.71-dev libboost-test1.71-dev libboost-timer1.71-dev libboost-type-erasure1.71-dev libboost-wave1.71-dev libboost1.71-tools-dev libmpfrc++-dev libntl-dev libmpfi-dev gmp-doc libgmp10-doc libice-doc libmpfr-doc ncurses-doc readline-doc libsm-doc libx11-doc libxcb-doc libxext-doc libxt-doc python2-doc python-tk python2.7-doc binfmt-support qt5-doc default-libmysqlclient-dev firebird-dev libpq-dev libsqlite3-dev unixodbc-dev
@@ -112,8 +112,8 @@ fi
 ### OpenFoam - End Fondation package
 
 # OPENFOAM OpenFoam ESI package
-# /usr/lib/openfoam/openfoam2012 sources & co
-# /usr/bin/openfoam2012 : bash session location
+# /usr/lib/openfoam/openfoam2106 sources & co
+# /usr/bin/openfoam2106 : bash session location
 if [ $ofESI = "on" ]; then
     echo "--------------------------------------------"
     echo "----     Install : OpenFoam - ESI"
@@ -123,13 +123,13 @@ if [ $ofESI = "on" ]; then
     sudo bash add-debian-repo.sh
     sudo rm -f add-debian-repo.sh
     sudo apt-get update
-    apt_install openfoam2012-default
+    apt_install openfoam2106-default
     if [ $offondation != "on" ]; then
-       echo ". /usr/lib/openfoam/openfoam2012/etc/bashrc" >> ~/.bashrc
+       echo ". /usr/lib/openfoam/openfoam2106/etc/bashrc" >> ~/.bashrc
     else
-       echo "alias ofcom='. /usr/lib/openfoam/openfoam2012/etc/bashrc'" >> ~/.bashrc
+       echo "alias ofcom='. /usr/lib/openfoam/openfoam2106/etc/bashrc'" >> ~/.bashrc
     fi
-    . /usr/lib/openfoam/openfoam2012/etc/bashrc
+    . /usr/lib/openfoam/openfoam2106/etc/bashrc
     mkdir -p "$FOAM_RUN"
 else
     echo "--------------------------------------------"
@@ -146,13 +146,14 @@ if [ $salome = "on" ]; then
     echo "----     Install : salome"
     echo "--------------------------------------------"
     # necessary library
-    apt_install libtbb-dev
+    apt_install libtbb-dev 
+    apt install libqwt-qt5-dev 
     # download salome
-    wget -O salome_dist.tar.gz "https://www.salome-platform.org/downloads/current-version/DownloadDistr?platform=SP.UB20.04&version=9.6.0"
+    wget -O salome_dist.tar.gz "https://www.salome-platform.org/downloads/current-version/DownloadDistr?platform=SP.UB20.04native&version=9.7.0"
     if [ $? -eq 0 ]; then
         tar -xzf salome_dist.tar.gz
         if [ $? -eq 0 ]; then
-            echo "alias salome='~/SALOME-9.6.0-UB20.04-SRC/salome'" >> ~/.bashrc
+            echo "alias salome='~/SALOME-9.7.0-native-UB20.04-SRC/salome'" >> ~/.bashrc
             rm -rf salome_dist.tar.gz
         else
             echo "could not uncompress SALOME"
