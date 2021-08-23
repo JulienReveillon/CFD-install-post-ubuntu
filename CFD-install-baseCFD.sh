@@ -53,6 +53,8 @@ apt_install meld
 apt_install python3-pip
 apt_install python3-opengl
 apt_install python3-psutil
+apt_install python3-sip
+apt_install python3-pyqt5
 sudo -H pip3 install --upgrade pip
 # Python libraries
 pip_install testresources
