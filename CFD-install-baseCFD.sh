@@ -70,8 +70,8 @@ apt_install freecad
 # SALOME PART 1
 apt_install libtbb-dev 
 ##apt install libqwt-qt5-dev 
-apt install libqwt-qt5-6
-apt install libqt5test5
+apt_install libqwt-qt5-6
+apt_install libqt5test5
 
 
 # OPENFOAM OpenFoam fondation package
