@@ -30,13 +30,12 @@ function apt_install {
 }
 
 function pip_install {
-  sudo -H pip3 install --upgrade "$@"
+  pip3 install --upgrade "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
     exit 1
   fi
 }
-
 
 # user root
 cd ~
@@ -166,6 +165,8 @@ else
     echo "----     NO install : salome"
     echo "--------------------------------------------"
 fi
+# setup local python
+echo "export PATH=/home/cfduser/.local/bin:$PATH" >> ~/.bashrc
 # personnal setup
 echo "alias h='history'" >> ~/.bashrc
 echo "shopt -s direxpand" >> ~/.bashrc
