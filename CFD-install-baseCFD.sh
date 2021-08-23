@@ -67,6 +67,11 @@ pip_install PyFoam
 # CAD
 apt_install meshlab
 apt_install freecad
+# SALOME PART 1
+apt_install libtbb-dev 
+##apt install libqwt-qt5-dev 
+apt install libqwt-qt5-6
+apt install libqt5test5
 
 
 # OPENFOAM OpenFoam fondation package
@@ -145,11 +150,6 @@ if [ $salome = "on" ]; then
     echo "--------------------------------------------"
     echo "----     Install : salome"
     echo "--------------------------------------------"
-    # necessary library
-    apt_install libtbb-dev 
-    ##apt install libqwt-qt5-dev 
-    apt install libqwt-qt5-6
-    apt install libqt5test5
     # download salome
     wget -O salome_dist.tar.gz "https://www.salome-platform.org/downloads/current-version/DownloadDistr?platform=SP.UB20.04native&version=9.7.0"
     if [ $? -eq 0 ]; then
