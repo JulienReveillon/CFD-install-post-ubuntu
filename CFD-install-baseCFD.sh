@@ -52,6 +52,7 @@ apt_install meld
 # Python3
 apt_install python3-pip
 apt_install python3-opengl
+apt_install python3-psutil
 sudo -H pip3 install --upgrade pip
 # Python libraries
 pip_install testresources
@@ -146,7 +147,9 @@ if [ $salome = "on" ]; then
     echo "--------------------------------------------"
     # necessary library
     apt_install libtbb-dev 
-    apt install libqwt-qt5-dev 
+    ##apt install libqwt-qt5-dev 
+    apt install libqwt-qt5-6
+    apt install libqt5test5
     # download salome
     wget -O salome_dist.tar.gz "https://www.salome-platform.org/downloads/current-version/DownloadDistr?platform=SP.UB20.04native&version=9.7.0"
     if [ $? -eq 0 ]; then
