@@ -66,6 +66,12 @@ pip_install matplotlib
 pip_install numpy
 pip_install sympy
 pip_install PyFoam
+# python env
+apt_install spyder
+# cantera library
+sudo apt install software-properties-common
+sudo apt-add-repository ppa:cantera-team/cantera
+sudo apt install cantera-python3 cantera-dev
 # CAD
 apt_install meshlab
 apt_install freecad
