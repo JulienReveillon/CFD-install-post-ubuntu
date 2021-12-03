@@ -14,8 +14,8 @@
 #          mkdir -p $FOAM_RUN
 #
 #------------------------------
-offondation="off"
-olaflow="off" #olaflow is installed only with the fondation version
+offondation="on"
+olaflow="on" #olaflow is installed only with the fondation version
 ofESI="on"
 salome="on"
 
@@ -49,6 +49,7 @@ apt_install aptitude
 apt_install curl
 apt_install tree
 apt_install meld
+apt_install gnuplot
 # Python3
 apt_install python3-pip
 apt_install python3-opengl
