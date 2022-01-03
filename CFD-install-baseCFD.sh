@@ -126,8 +126,6 @@ fi
 ### OpenFoam - End Fondation package
 
 # OPENFOAM OpenFoam ESI package
-# /usr/lib/openfoam/openfoam2106 sources & co
-# /usr/bin/openfoam2106 : bash session location
 if [ $ofESI = "on" ]; then
     echo "--------------------------------------------"
     echo "----     Install : OpenFoam - ESI"
@@ -137,13 +135,13 @@ if [ $ofESI = "on" ]; then
     sudo bash add-debian-repo.sh
     sudo rm -f add-debian-repo.sh
     sudo apt-get update
-    apt_install openfoam2106-default
+    apt_install openfoam2112-default
     if [ $offondation != "on" ]; then
-       echo ". /usr/lib/openfoam/openfoam2106/etc/bashrc" >> ~/.bashrc
+       echo ". /usr/lib/openfoam/openfoam2112/etc/bashrc" >> ~/.bashrc
     else
-       echo "alias ofcom='. /usr/lib/openfoam/openfoam2106/etc/bashrc'" >> ~/.bashrc
+       echo "alias ofcom='. /usr/lib/openfoam/openfoam2112/etc/bashrc'" >> ~/.bashrc
     fi
-    . /usr/lib/openfoam/openfoam2106/etc/bashrc
+    . /usr/lib/openfoam/openfoam2112/etc/bashrc
     mkdir -p "$FOAM_RUN"
 else
     echo "--------------------------------------------"
