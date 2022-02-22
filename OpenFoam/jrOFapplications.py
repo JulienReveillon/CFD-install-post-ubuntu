@@ -106,4 +106,38 @@ def readOFScalar(case_dir,str_scal,str_time):
                     datum = float(words[0])
                     dataScal.append(datum)
     return dataScal
+    
+    
+#------------------------------------------------
+def readOFColumnData(dataFile,nCol):
+    """
+    Read a file with columns of the format "Data0 Data1 Data2 Data3 etc"
+    -> If present, parenthesis will be discarded  (presents when vectors)
+    -> If present line beginning with # will be ignored  (presents when comments)
+    -> Return the column content
+    
+    
+    Arguments :
+    dataFile  : path to the file
+    nCol      : column number of the considered data (0=time, etc)
+    
+    Return    :
+    data      : corresponding data of the column nCol
+    """
+    fileCheck(dataFile) # does the file exists ? Stop if not.
+    #
+    # Init list
+    data        = []
+    #
+    for line in fileinput.input(dataFile):
+        # remove parenthesis if any
+        line = line.replace('(', '')
+        line = line.replace(')', '') 
+        # divide each element of the line into words
+        words = line.split()
+        if words:  # if there is a line in fact
+            if words[0][0]!='#':  #do something only if not comment    
+               data.append(float(words[nCol]))    
+    #         
+    return data
 
