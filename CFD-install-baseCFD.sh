@@ -164,12 +164,14 @@ if [ $salome = "on" ]; then
     echo "--------------------------------------------"
     echo "----     Install : salome"
     echo "--------------------------------------------"
+    # library for version 8.8
+    apt_install libcminpack1
     # download salome
     wget -O salome_dist.tar.gz "https://files.salome-platform.org/Salome/Salome9.8.0/SALOME-9.8.0-native-UB20.04-SRC.tar.gz"
     if [ $? -eq 0 ]; then
         tar -xzf salome_dist.tar.gz
         if [ $? -eq 0 ]; then
-            echo "alias salome='~/ALOME-9.8.0-native-UB20.04-SRC/salome'" >> ~/.bashrc
+            echo "alias salome='~/SALOME-9.8.0-native-UB20.04-SRC/salome'" >> ~/.bashrc
             rm -rf salome_dist.tar.gz
         else
             echo "could not uncompress SALOME"
