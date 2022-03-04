@@ -82,7 +82,6 @@ apt_install libtbb-dev
 apt_install libqwt-qt5-6
 apt_install libqt5test5
 
-
 # OPENFOAM OpenFoam fondation package
 if [ $offondation = "on" ]; then
     echo "--------------------------------------------"
@@ -96,7 +95,11 @@ if [ $offondation = "on" ]; then
     if [ $ofESI != "on" ]; then
        echo ". /opt/openfoam9/etc/bashrc" >> ~/.bashrc
     else
-       echo "alias oforg='. /opt/openfoam9/etc/bashrc'" >> ~/.bashrc
+       echo "function oforg() {" >> ~/.bashrc
+       echo "   . /opt/openfoam9/etc/bashrc" >> ~/.bashrc
+       echo "   . \$WM_PROJECT_DIR/bin/tools/CleanFunctions" >> ~/.bashrc
+       echo "   export PS1=\"\u@OF90 \w> \"" >> ~/.bashrc
+       echo "}" >> ~/.bashrc
     fi
     . /opt/openfoam9/etc/bashrc
     mkdir -p "$FOAM_RUN"
@@ -139,7 +142,11 @@ if [ $ofESI = "on" ]; then
     if [ $offondation != "on" ]; then
        echo ". /usr/lib/openfoam/openfoam2112/etc/bashrc" >> ~/.bashrc
     else
-       echo "alias ofcom='. /usr/lib/openfoam/openfoam2112/etc/bashrc'" >> ~/.bashrc
+       echo "function ofcom() {" >> ~/.bashrc
+       echo "   . /usr/lib/openfoam/openfoam2112/etc/bashrc" >> ~/.bashrc
+       echo "   . \$WM_PROJECT_DIR/bin/tools/CleanFunctions" >> ~/.bashrc
+       echo "   export PS1=\"\u@OF2112 \w> \"" >> ~/.bashrc
+       echo "}" >> ~/.bashrc
     fi
     . /usr/lib/openfoam/openfoam2112/etc/bashrc
     mkdir -p "$FOAM_RUN"
@@ -158,11 +165,11 @@ if [ $salome = "on" ]; then
     echo "----     Install : salome"
     echo "--------------------------------------------"
     # download salome
-    wget -O salome_dist.tar.gz "https://www.salome-platform.org/downloads/current-version/DownloadDistr?platform=SP.UB20.04native&version=9.7.0"
+    wget -O salome_dist.tar.gz "https://files.salome-platform.org/Salome/Salome9.8.0/SALOME-9.8.0-native-UB20.04-SRC.tar.gz"
     if [ $? -eq 0 ]; then
         tar -xzf salome_dist.tar.gz
         if [ $? -eq 0 ]; then
-            echo "alias salome='~/SALOME-9.7.0-native-UB20.04-SRC/salome'" >> ~/.bashrc
+            echo "alias salome='~/ALOME-9.8.0-native-UB20.04-SRC/salome'" >> ~/.bashrc
             rm -rf salome_dist.tar.gz
         else
             echo "could not uncompress SALOME"
@@ -176,7 +183,7 @@ else
     echo "--------------------------------------------"
 fi
 # setup local python
-echo "export PATH=/home/cfduser/.local/bin:$PATH" >> ~/.bashrc
+echo "export PATH=~/.local/bin:$PATH" >> ~/.bashrc
 # personnal setup
 echo "alias h='history'" >> ~/.bashrc
 echo "shopt -s direxpand" >> ~/.bashrc
