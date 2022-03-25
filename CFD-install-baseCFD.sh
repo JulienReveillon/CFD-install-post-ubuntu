@@ -199,6 +199,6 @@ sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
 sudo systemctl disable apport.service
 #
 # Wallpaper I use
-wget https://www.dropbox.com/s/1qkimjutqdt0lrb/black-waves-3840x2160-4k.jpg?dl=0 -O /tmp/blackwaves.jpg
-gsettings set org.gnome.desktop.background picture-uri file:////tmp/blackwaves.jpg
+wget https://www.dropbox.com/s/1qkimjutqdt0lrb/black-waves-3840x2160-4k.jpg?dl=0 -O $HOME/blackwaves.jpg
+gsettings set org.gnome.desktop.background picture-uri file:///$HOME/blackwaves.jpg
 echo "Done !"
