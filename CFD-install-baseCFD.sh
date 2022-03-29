@@ -8,6 +8,7 @@
 # Script to install basic CFD  tools
 #------------------------------
 #
+#
 # README : after charging for the first time your OF
 #          environment (oforg or ofcom) create your run directory.
 #          type in the terminal :
@@ -36,7 +37,8 @@ function pip_install {
     exit 1
   fi
 }
-
+#
+echo "WARNING : works with the complete installation of Ubuntu LTS 20.04 (not the minimal one)"
 # user root
 cd ~
 # update system
