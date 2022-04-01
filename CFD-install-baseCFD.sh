@@ -1,20 +1,14 @@
 #!/bin/bash
-#------------------------------
+#----------------------------------
+# Script to install basic CFD tools
+#----------------------------------
 #-  Julien Reveillon ----------
 #-  Julien.Reveillon@coria.fr -
-#-  21/12/2020 ----------------
-#
+#-  www.julienreveillon.com ---
+#-  01/04/2022 ----------------
 #------------------------------
-# Script to install basic CFD  tools
-#------------------------------
-#
-#
-# README : after charging for the first time your OF
-#          environment (oforg or ofcom) create your run directory.
-#          type in the terminal :
-#          mkdir -p $FOAM_RUN
-#
-#------------------------------
+
+
 offondation="on"
 olaflow="on" #olaflow is installed only with the fondation version
 ofESI="on"
