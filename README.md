@@ -15,7 +15,7 @@ Script to post install Ubuntu LTS with
    + meshlab
    + freecad
 1. Python3 librairies to plot and analyze data 
-   + matplotlib, scipy, numpy, sympy
+   + matplotlib, scipy, numpy, sympy, cantera
    + PyFoam
    + seaborn, pygame
 1. Usefull tools
@@ -27,11 +27,11 @@ Script to post install Ubuntu LTS with
 2. Setup your basic ubuntu system (make sure to stay in LTS version 20.04 !)
 3. Download the script :
     wget https://raw.githubusercontent.com/JulienReveillon/CFD-install-post-ubuntu/master/CFD-install-baseCFD.sh
-4. switchto on or off the first 4 flags.
-5. Execute the script : (warning #1 : do not execute this script while ubuntu is updating)
+4. switch to on or off the first 4 flags.
+5. Execute the script : (##warning #1 : do not execute this script while ubuntu is updating)
     #> bash CFD-install-baseCFD.sh
     
-    warning #2 : it will ask you for the sudo passwd, enter it.
+    ##warning #2 : it will ask you for the sudo passwd, enter it.
     but do no sudo the whole script otherwise you will have owner/group problems
     be sure to have a fast internet connection, SALOME package is greater than 3Go
     
