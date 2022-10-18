@@ -52,6 +52,9 @@ apt_install python3-opengl
 apt_install python3-psutil
 apt_install python3-sip
 apt_install python3-pyqt5
+apt_install python3-pyside2.qtnetwork
+apt_install python3-pyside2.qtwebengine
+apt_install python3-pyside2.qtwebchannel
 sudo -H pip3 install --upgrade pip
 # Python libraries
 pip_install testresources
@@ -63,6 +66,7 @@ pip_install matplotlib
 pip_install numpy
 pip_install sympy
 pip_install PyFoam
+pip_install gmsh
 # python env
 apt_install spyder
 # cantera library
