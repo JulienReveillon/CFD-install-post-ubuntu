@@ -167,7 +167,8 @@ if [ $salome = "on" ]; then
     # library for version 8.8
     apt_install libcminpack1
     # download salome
-    wget -O salome_dist.tar.gz "https://files.salome-platform.org/Salome/Salome9.8.0/SALOME-9.8.0-native-UB20.04-SRC.tar.gz"
+    # wget -O salome_dist.tar.gz "https://files.salome-platform.org/Salome/Salome9.8.0/SALOME-9.8.0-native-UB20.04-SRC.tar.gz"
+    wget -O salome_dist.tar.gz "https://files.salome-platform.org/Salome/Salome9.9.0/SALOME-9.9.0-native-UB22.04-SRC-22b4348cf247e9a72539dca3b6f2d65f.tar.gz"
     if [ $? -eq 0 ]; then
         tar -xzf salome_dist.tar.gz
         if [ $? -eq 0 ]; then
