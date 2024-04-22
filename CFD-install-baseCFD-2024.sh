@@ -76,13 +76,10 @@ sudo apt install cantera-python3 cantera-dev
 apt_install meshlab
 apt_install freecad
 # SALOME PART 1
-apt_install libtbb-dev 
-##apt install libqwt-qt5-dev 
-apt_install libqwt-qt5-6
-apt_install libcminpack1
+sudo apt-get install libqwt-qt5-6 libqt5xml5 libqt5printsupport5 libqt5test5 libqt5x11extras5 libqt5help5 libfreeimage3 libtbb2 python3-sip python3-pyqt5 python-is-python3 python3-babel python3-pytest-cython python3-jinja2 python3-pygments python3-sphinx python3-alabaster cmake python3-cycler python3-docutils graphviz python3-imagesize python3-kiwisolver liblapack3 clang python3-matplotlib libmetis5 python3-numpy python3-packaging python3-pyparsing python3-tz python3-scipy python3-stemmer python3-sphinx-rtd-theme python3-sphinxcontrib.websupport sphinx-intl libtcl libtk libopengl0 libboost-all-dev pyqt5-dev pyqt5-dev-tools libcppunit-dev doxygen libeigen3-dev libfreeimage-dev libfreetype6-dev libgraphviz-dev liblapack-dev libxml2-dev llvm-dev mesa-common-dev libglu1-mesa-dev libmetis-dev qttools5-dev libqt5svg5-dev libqt5x11extras5-dev qtxmlpatterns5-dev-tools libqwt-qt5-dev libscotch-dev python3-sip-dev swig libtbb-dev tcl-dev tk-dev libcminpack-dev
+echo "alias salome=/home/cfd/SALOME-9.12.0-native-UB22.04-SRC/salome" >> ~/.bashrc
+## 
 
-
-libQt5X11Extras.so.5
 
 
 echo "--------------------------------------------"
@@ -121,4 +118,5 @@ sudo systemctl disable apport.service
 # Wallpaper I use
 wget https://www.dropbox.com/s/1qkimjutqdt0lrb/black-waves-3840x2160-4k.jpg?dl=0 -O $HOME/blackwaves.jpg
 gsettings set org.gnome.desktop.background picture-uri file:///$HOME/blackwaves.jpg
+echo "WARNING : you have to download SALOME yourself"
 echo "Done !"
