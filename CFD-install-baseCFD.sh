@@ -9,10 +9,6 @@
 #------------------------------
 
 
-offondation="on"
-olaflow="on" #olaflow is installed only with the fondation version
-ofESI="on"
-salome="on"
 
 set -x  # make sure each command is printed
 
@@ -67,6 +63,9 @@ pip_install numpy
 pip_install sympy
 pip_install PyFoam
 pip_install gmsh
+pip_install notebook
+pip_install jupyterlab
+pip_install pygame
 # python env
 apt_install spyder
 # cantera library
@@ -77,114 +76,31 @@ sudo apt install cantera-python3 cantera-dev
 apt_install meshlab
 apt_install freecad
 # SALOME PART 1
-apt_install libtbb-dev 
-##apt install libqwt-qt5-dev 
-apt_install libqwt-qt5-6
-apt_install libqt5test5
+sudo apt-get install libqwt-qt5-6 libqt5xml5 libqt5printsupport5 libqt5test5 libqt5x11extras5 libqt5help5 libfreeimage3 libtbb2 python3-sip python3-pyqt5 python-is-python3 python3-babel python3-pytest-cython python3-jinja2 python3-pygments python3-sphinx python3-alabaster cmake python3-cycler python3-docutils graphviz python3-imagesize python3-kiwisolver liblapack3 clang python3-matplotlib libmetis5 python3-numpy python3-packaging python3-pyparsing python3-tz python3-scipy python3-stemmer python3-sphinx-rtd-theme python3-sphinxcontrib.websupport sphinx-intl libtcl libtk libopengl0 libboost-all-dev pyqt5-dev pyqt5-dev-tools libcppunit-dev doxygen libeigen3-dev libfreeimage-dev libfreetype6-dev libgraphviz-dev liblapack-dev libxml2-dev llvm-dev mesa-common-dev libglu1-mesa-dev libmetis-dev qttools5-dev libqt5svg5-dev libqt5x11extras5-dev qtxmlpatterns5-dev-tools libqwt-qt5-dev libscotch-dev python3-sip-dev swig libtbb-dev tcl-dev tk-dev libcminpack-dev
+echo "alias salome=/home/cfd/SALOME-9.12.0-native-UB22.04-SRC/salome" >> ~/.bashrc
+## 
 
-# OPENFOAM OpenFoam fondation package
-if [ $offondation = "on" ]; then
-    echo "--------------------------------------------"
-    echo "----     Install : OpenFoam Fondation"
-    echo "--------------------------------------------"
-    echo "Install openFoam foundation package !"
-    sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"
-    sudo add-apt-repository http://dl.openfoam.org/ubuntu
-    sudo apt-get update
-    apt_install openfoam9
-    if [ $ofESI != "on" ]; then
-       echo ". /opt/openfoam9/etc/bashrc" >> ~/.bashrc
-    else
-       echo "function oforg() {" >> ~/.bashrc
-       echo "   . /opt/openfoam9/etc/bashrc" >> ~/.bashrc
-       echo "   . \$WM_PROJECT_DIR/bin/tools/CleanFunctions" >> ~/.bashrc
-       echo "   export PS1=\"\u@OF90 \w> \"" >> ~/.bashrc
-       echo "}" >> ~/.bashrc
-    fi
-    . /opt/openfoam9/etc/bashrc
-    mkdir -p "$FOAM_RUN"
-    #### option suggested non necessary packages  : begin comment
-    sudo apt-get -y install bison flex-doc gnuplot-doc libboost-doc libboost1.71-doc libboost-container1.71-dev libboost-context1.71-dev libboost-contract1.71 dev libboost-coroutine1.71-dev libboost-exception1.71-dev libboost-fiber1.71-dev libboost-filesystem1.71-dev libboost-graph1.71-dev libboost-graph-parallel1.71-dev libboost-iostreams1.71-dev libboost-locale1.71-dev libboost-log1.71-dev libboost-math1.71-dev libboost-mpi1.71-dev libboost-mpi-python1.71-dev libboost-numpy1.71-dev libboost-python1.71-dev libboost-random1.71-dev libboost-regex1.71-dev libboost-stacktrace1.71-dev libboost-test1.71-dev libboost-timer1.71-dev libboost-type-erasure1.71-dev libboost-wave1.71-dev libboost1.71-tools-dev libmpfrc++-dev libntl-dev libmpfi-dev gmp-doc libgmp10-doc libice-doc libmpfr-doc ncurses-doc readline-doc libsm-doc libx11-doc libxcb-doc libxext-doc libxt-doc python2-doc python-tk python2.7-doc binfmt-support qt5-doc default-libmysqlclient-dev firebird-dev libpq-dev libsqlite3-dev unixodbc-dev
-    #### option suggested non necessary packages : end comment
-    #olaflow (wave generation library)
-    if [ $olaflow = "on" ]; then
-       echo "--------------------------------------------"
-       echo "----     Install : olaflow"
-       echo "--------------------------------------------"
-       cd ~
-       git clone git://github.com/phicau/olaFlow.git
-       cd olaFlow
-       ./allMake
-       cd ~
-    else
-       echo "--------------------------------------------"
-       echo "----     NO install : olaflow"
-       echo "--------------------------------------------"
-    fi
-else
-    echo "--------------------------------------------"
-    echo "----     NO install : OpenFoam Fondation"
-    echo "--------------------------------------------"
-fi
-### OpenFoam - End Fondation package
 
-# OPENFOAM OpenFoam ESI package
-if [ $ofESI = "on" ]; then
-    echo "--------------------------------------------"
-    echo "----     Install : OpenFoam - ESI"
-    echo "--------------------------------------------"
-    apt_install paraview
-    curl -s https://dl.openfoam.com/add-debian-repo.sh -o add-debian-repo.sh
-    sudo bash add-debian-repo.sh
-    sudo rm -f add-debian-repo.sh
-    sudo apt-get update
-    apt_install openfoam2112-default
-    if [ $offondation != "on" ]; then
-       echo ". /usr/lib/openfoam/openfoam2112/etc/bashrc" >> ~/.bashrc
-    else
-       echo "function ofcom() {" >> ~/.bashrc
-       echo "   . /usr/lib/openfoam/openfoam2112/etc/bashrc" >> ~/.bashrc
-       echo "   . \$WM_PROJECT_DIR/bin/tools/CleanFunctions" >> ~/.bashrc
-       echo "   export PS1=\"\u@OF2112 \w> \"" >> ~/.bashrc
-       echo "}" >> ~/.bashrc
-    fi
-    . /usr/lib/openfoam/openfoam2112/etc/bashrc
-    mkdir -p "$FOAM_RUN"
-else
-    echo "--------------------------------------------"
-    echo "----     NO install : OpenFoam - ESI"
-    echo "--------------------------------------------"
-fi
+
+echo "--------------------------------------------"
+echo "----     Install : OpenFoam - ESI"
+echo "--------------------------------------------"
+apt_install paraview
+curl -s https://dl.openfoam.com/add-debian-repo.sh -o add-debian-repo.sh
+sudo bash add-debian-repo.sh
+sudo rm -f add-debian-repo.sh
+sudo apt-get update
+apt_install openfoam2312-default
+
+echo ". /usr/lib/openfoam/openfoam2312/etc/bashrc" >> ~/.bashrc
+echo ". \$WM_PROJECT_DIR/bin/tools/CleanFunctions" >> ~/.bashrc
+echo "export PS1=\"\u@OF2312 \w> \"" >> ~/.bashrc
+. /usr/lib/openfoam/openfoam2312/etc/bashrc
+mkdir -p "$FOAM_RUN"
+
 ### OpenFoam - End ESI package
 
 
-
-#### SALOME Mesh
-if [ $salome = "on" ]; then
-    echo "--------------------------------------------"
-    echo "----     Install : salome"
-    echo "--------------------------------------------"
-    # library for version 8.8
-    apt_install libcminpack1
-    # download salome
-    # wget -O salome_dist.tar.gz "https://files.salome-platform.org/Salome/Salome9.8.0/SALOME-9.8.0-native-UB20.04-SRC.tar.gz"
-    wget -O salome_dist.tar.gz "https://files.salome-platform.org/Salome/Salome9.9.0/SALOME-9.9.0-native-UB22.04-SRC-22b4348cf247e9a72539dca3b6f2d65f.tar.gz"
-    if [ $? -eq 0 ]; then
-        tar -xzf salome_dist.tar.gz
-        if [ $? -eq 0 ]; then
-            echo "alias salome='~/SALOME-9.8.0-native-UB20.04-SRC/salome'" >> ~/.bashrc
-            rm -rf salome_dist.tar.gz
-        else
-            echo "could not uncompress SALOME"
-        fi
-    else
-        echo "could not install SALOME"
-    fi
-else
-    echo "--------------------------------------------"
-    echo "----     NO install : salome"
-    echo "--------------------------------------------"
-fi
 # setup local python
 echo "export PATH=~/.local/bin:$PATH" >> ~/.bashrc
 # personnal setup
@@ -202,4 +118,5 @@ sudo systemctl disable apport.service
 # Wallpaper I use
 wget https://www.dropbox.com/s/1qkimjutqdt0lrb/black-waves-3840x2160-4k.jpg?dl=0 -O $HOME/blackwaves.jpg
 gsettings set org.gnome.desktop.background picture-uri file:///$HOME/blackwaves.jpg
+echo "WARNING : you have to download SALOME yourself"
 echo "Done !"
